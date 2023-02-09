@@ -138,3 +138,4 @@ ip r add <SGWU_CONTAINER_IP> via <SGWU_ADVERTISE_IP>
 ## Not supported
 - IPv6 usage in Docker
 
+# docker_open5gs_1
