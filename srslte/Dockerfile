@@ -34,7 +34,7 @@ RUN apt-get update && \
     libzmq3-dev libboost-system-dev libboost-test-dev libboost-thread-dev libqwt-qt5-dev qtbase5-dev \
     software-properties-common g++ make pkg-config libpython2-dev python-numpy swig libi2c-dev \
     libboost-program-options-dev libconfig++-dev net-tools iputils-ping libusb-1.0-0-dev libpython3-dev python3-numpy swig \
-    python3-distutils
+    python3-distutils numactl
 
 # Get SoapySDR, compile and install
 RUN git clone https://github.com/pothosware/SoapySDR.git && \
@@ -53,8 +53,11 @@ RUN git clone https://github.com/myriadrf/LimeSuite.git && \
     ldconfig
 
 # UHD drivers for USRP
+#RUN add-apt-repository ppa:ettusresearch/uhd && \
+#    apt update && apt -y install libuhd-dev libuhd4.3.0 uhd-host && \
+#    uhd_images_downloader
 RUN add-apt-repository ppa:ettusresearch/uhd && \
-    apt update && apt -y install libuhd-dev libuhd4.3.0 uhd-host && \
+    apt update && apt -y install libuhd-dev libuhd3.15.0 uhd-host && \
     uhd_images_downloader
 
 # Get srsGUI, compile and install
@@ -68,7 +71,7 @@ RUN git clone https://github.com/srsran/srsGUI && \
 # Get srsLTE, compile and install
 RUN git clone https://github.com/srsran/srsRAN.git && \
     cd srsRAN && \
-    git checkout tags/release_22_04_1 && \
+    git checkout tags/release_22_10 && \
     mkdir build && cd build && \
     cmake ../ && make -j`nproc` && make install && \
     ldconfig

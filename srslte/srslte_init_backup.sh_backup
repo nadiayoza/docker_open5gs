@@ -82,8 +82,7 @@ if [[ -z "$COMPONENT_NAME" ]]; then
 	echo "Error: COMPONENT_NAME environment variable not set"; exit 1;
 elif [[ "$COMPONENT_NAME" =~ ^(gnb$) || "$COMPONENT_NAME" =~ ^(enb$) || "$COMPONENT_NAME" =~ ^(enb_zmq$) || "$COMPONENT_NAME" =~ ^(gnb_zmq$) ]]; then
 	echo "Deploying component: '$COMPONENT_NAME'"
-	/usr/bin/numactl --cpunodebind=0 --membind=0 /usr/local/bin/srsenb
-	#/usr/local/bin/srsenb
+	/usr/local/bin/srsenb
 elif [[ "$COMPONENT_NAME" =~ ^(ue_zmq$) || "$COMPONENT_NAME" =~ ^(ue_5g_zmq$) ]]; then
 	echo "Deploying component: '$COMPONENT_NAME'"
 	/usr/local/bin/srsue
